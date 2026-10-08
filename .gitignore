@@ -1,0 +1,41 @@
+# Editors and operating systems
+.idea/
+.vscode/
+*.iml
+*.user
+*.suo
+.DS_Store
+Thumbs.db
+
+# Local configuration and secrets
+.env
+.env.*
+!env.example
+appsettings.Local.json
+secrets.json
+
+# Flutter and Dart
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/build/
+**/coverage/
+**/android/.gradle/
+**/android/local.properties
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Pods/
+**/ios/.symlinks/
+
+# .NET
+**/bin/
+**/obj/
+**/TestResults/
+*.nupkg
+
+# Logs and temporary files
+*.log
+*.tmp
+*.userprefs
