@@ -5,17 +5,17 @@ using SheetYar.Api.Errors;
 using SheetYar.Api.Health;
 using SheetYar.Api.Middleware;
 using SheetYar.Api.Validation;
-using SheetYar.Application.Health;
-using SheetYar.Application.Time;
 using SheetYar.Application.Validation;
-using SheetYar.Infrastructure.Health;
-using SheetYar.Infrastructure.Time;
+using SheetYar.Infrastructure;
 
 namespace SheetYar.Api;
 
 public static class ApiApplication
 {
-    public static WebApplication Build(string[] args, string? environmentName = null)
+    public static WebApplication Build(
+        string[] args,
+        string? environmentName = null,
+        Action<WebApplicationBuilder>? configureBuilder = null)
     {
         var builder = environmentName is null
             ? WebApplication.CreateBuilder(args)
@@ -30,7 +30,8 @@ public static class ApiApplication
         builder.WebHost.ConfigureKestrel(options =>
             options.Limits.MaxRequestBodySize = RequestSizeLimitMiddleware.MaxRequestBodySize);
 
-        ConfigureServices(builder.Services);
+        ConfigureServices(builder.Services, builder.Configuration);
+        configureBuilder?.Invoke(builder);
 
         var app = builder.Build();
         ConfigurePipeline(app);
@@ -50,11 +51,11 @@ public static class ApiApplication
         });
     }
 
-    private static void ConfigureServices(IServiceCollection services)
+    private static void ConfigureServices(
+        IServiceCollection services,
+        IConfiguration configuration)
     {
-        services.AddSingleton<TimeProvider>(TimeProvider.System);
-        services.AddSingleton<ISystemClock, SystemClock>();
-        services.AddSingleton<IHealthService, HealthService>();
+        services.AddSheetYarInfrastructure(configuration);
         services.AddSingleton(typeof(IRequestValidator<>), typeof(DataAnnotationsRequestValidator<>));
 
         services.AddProblemDetails(options =>

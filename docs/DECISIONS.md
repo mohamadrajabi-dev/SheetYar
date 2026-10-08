@@ -41,7 +41,7 @@ This file records accepted product and engineering decisions. Update it when a f
 
 - **Status:** Accepted
 - **Date:** 2026-10-07
-- **Decision:** Use ASP.NET Core, C#, Entity Framework Core, SQL Server Express, and ClosedXML.
+- **Decision:** Use ASP.NET Core, C#, Entity Framework Core, SQL Server, and ClosedXML.
 - **Consequence:** XLSX processing belongs to the backend; the mobile application consumes it through APIs.
 
 ## D-007: Dependency Licensing
@@ -64,3 +64,10 @@ This file records accepted product and engineering decisions. Update it when a f
 - **Date:** 2026-10-07
 - **Decision:** Keep changes request-scoped, protect secrets, run relevant tests, and commit only upon explicit request.
 - **Consequence:** Codex final reports to the user must be in Persian and no longer than five lines.
+
+## D-010: SQL Client Runtime License Exception
+
+- **Status:** Accepted
+- **Date:** 2026-10-08
+- **Decision:** Allow `Microsoft.Data.SqlClient.SNI.runtime` as the sole exception to the repository dependency-license policy because it is a required runtime dependency of the official EF Core SQL Server provider.
+- **Consequence:** The exception is limited to this exact package and purpose. All other dependencies remain subject to the existing MIT, BSD-2-Clause, BSD-3-Clause, or Apache-2.0 policy and must still be verified and registered before use.

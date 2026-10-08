@@ -5,4 +5,7 @@ public interface IHealthService
     ValueTask<HealthSnapshot> CheckAsync(CancellationToken cancellationToken);
 }
 
-public sealed record HealthSnapshot(string Status, DateTimeOffset CheckedAtUtc);
+public sealed record HealthSnapshot(
+    string Status,
+    DateTimeOffset CheckedAtUtc,
+    string DatabaseStatus);

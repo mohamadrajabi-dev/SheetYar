@@ -39,12 +39,13 @@ These instructions apply to the entire repository.
 
 - ASP.NET Core and C#
 - Entity Framework Core
-- SQL Server Express
+- SQL Server
 - ClosedXML for XLSX import and export
 
 ## Dependency Policy
 
 - Use only free dependencies licensed under MIT, BSD-2-Clause, BSD-3-Clause, or Apache-2.0.
+- `Microsoft.Data.SqlClient.SNI.runtime` is the only approved license-policy exception. It is allowed solely as the runtime dependency required by the official EF Core SQL Server provider; this exception does not authorize any other package or use.
 - Verify each dependency against an authoritative source before installation.
 - Record its exact version, license, source URL, purpose, and verification date in `docs/LICENSES.md` before adding it.
 - Do not use Syncfusion, DevExpress, Telerik, Aspose, Infragistics, SpreadJS, `@univerjs-pro`, paid cloud services, subscription services, or any dependency that requires a commercial license.

@@ -23,7 +23,7 @@ This Windows workstation is supported for SheetYar Android builds only. The Flut
 | Android System Image | Ready | Android 16 / API 36, Google APIs, x86_64, revision 7 |
 | Android AVD | Ready, stopped | `SheetYar_Pixel_8_API_36` exists but was not running during the audit |
 | .NET SDK | Ready | SDK 8.0.302 and 10.0.100 installed |
-| SQL Server | Usable with mismatch | SQL Server 2022 Developer is installed; the project decision specifies Express |
+| SQL Server | Ready for local development | SQL Server 2022 Developer is installed for development and testing |
 | Git | Ready | Git 2.47.1 with Credential Manager and the SheetYar remote configured |
 | iOS toolchain | Not available by design | Requires macOS and Xcode |
 
@@ -108,8 +108,8 @@ No BIOS or Windows virtualization change is currently required. Start the existi
 
 ### SQL Findings
 
-1. The project specifies SQL Server Express, but the installed edition is Developer. Developer is sufficient for local development and testing, but it is not licensed for production use.
-2. Install Express only if exact environment parity with the project decision is required. Use the default `SQLEXPRESS` named instance and let Setup manage files under `C:\Program Files\Microsoft SQL Server`.
+1. SQL Server 2022 Developer is suitable for local development and testing, but Microsoft does not license Developer edition for production use.
+2. The production SQL Server edition, capacity, topology, and licensing must be selected and validated separately before deployment.
 3. Both detected SQL Server engines report the original 16.0.1000.6 build. Review and apply the current SQL Server 2022 cumulative update before regular use; no update was applied during this audit.
 4. The additional `MSSQLSERVERR` instance may be intentional and was not changed or removed.
 
@@ -135,7 +135,7 @@ The Codex sandbox may report Git dubious ownership because it uses a different W
 
 ### Project Decisions or Later Setup
 
-1. Decide whether local Developer edition is acceptable or whether exact SQL Server Express parity is required.
+1. Select and license the production SQL Server edition based on deployment capacity and availability requirements; keep Developer edition limited to development and testing.
 2. Review SQL Server servicing against the current official SQL Server 2022 build list.
 3. Pin the selected .NET SDK with `global.json` when the API is scaffolded.
 4. Add `dotnet-ef` as a repository-local tool only when EF Core work begins.
@@ -154,7 +154,7 @@ The Codex sandbox may report Git dubious ownership because it uses a different W
 | Windows virtualization | [Android emulator acceleration](https://developer.android.com/studio/run/emulator-acceleration), [Microsoft virtualization guidance](https://support.microsoft.com/en-us/windows/experience/enable-virtualization-on-windows) | Windows feature and BIOS/UEFI | Already operational |
 | Java | [Android build JDK guidance](https://developer.android.com/build/jdks) | Use Android Studio `jbr` | No separate install needed |
 | .NET SDK | [.NET Windows downloads](https://dotnet.microsoft.com/en-us/download?initial-os=windows), [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) | `C:\Program Files\dotnet` | Already installed |
-| SQL Server Express | [SQL Server downloads](https://www.microsoft.com/en-us/sql-server/sql-server-downloads), [SQL Server 2022 Express bootstrapper](https://download.microsoft.com/download/5/1/4/5145fe04-4d30-4b85-b0d1-39533663a2f1/SQL2022-SSEI-Expr.exe) | `C:\Program Files\Microsoft SQL Server`; instance `SQLEXPRESS` | Optional for exact project parity |
+| SQL Server | [SQL Server downloads](https://www.microsoft.com/en-us/sql-server/sql-server-downloads), [SQL Server 2022 editions and supported features](https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2022) | `C:\Program Files\Microsoft SQL Server` | Developer edition is installed for local development and testing; choose production edition separately |
 | SQL Server servicing | [SQL Server 2022 build versions](https://learn.microsoft.com/en-us/troubleshoot/sql/releases/sqlserver-2022/build-versions) | Existing instances | Review current cumulative update |
 | Git for Windows | [Git for Windows](https://git-scm.com/install/windows) | `C:\Program Files\Git` | Already installed |
 | Xcode for iOS | [Flutter iOS setup](https://docs.flutter.dev/platform-integration/ios/setup), [Xcode](https://developer.apple.com/xcode/) | `/Applications/Xcode.app` on a Mac | Required only on macOS; impossible to install on Windows |

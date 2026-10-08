@@ -36,7 +36,7 @@ Web and desktop applications are explicitly excluded. The repository must not in
 
 - ASP.NET Core and C#
 - Entity Framework Core for persistence
-- SQL Server Express as the database
+- SQL Server as the database
 - ClosedXML for XLSX import and export
 
 ## MVP Capabilities

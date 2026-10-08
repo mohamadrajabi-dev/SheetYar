@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using SheetYar.Api;
 using SheetYar.Api.Validation;
+using SheetYar.Application.Health;
 using Xunit;
 
 namespace SheetYar.Backend.Tests;
@@ -32,10 +34,19 @@ public sealed class ApiApplicationTests : IAsyncLifetime
 
     private WebApplication? _application;
     private HttpClient? _client;
+    private StubDatabaseHealthService? _databaseHealthService;
 
     public async Task InitializeAsync()
     {
-        _application = ApiApplication.Build(Array.Empty<string>(), "Testing");
+        _databaseHealthService = new StubDatabaseHealthService();
+        _application = ApiApplication.Build(
+            Array.Empty<string>(),
+            "Testing",
+            builder =>
+            {
+                builder.Services.RemoveAll<IDatabaseHealthService>();
+                builder.Services.AddSingleton<IDatabaseHealthService>(_databaseHealthService);
+            });
         _application.MapGet(
                 "/_testing/status/{statusCode:int}",
                 static (int statusCode) => Results.StatusCode(statusCode))
@@ -79,9 +90,23 @@ public sealed class ApiApplicationTests : IAsyncLifetime
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.Equal("Healthy", document.RootElement.GetProperty("status").GetString());
+        Assert.Equal("Healthy", document.RootElement.GetProperty("databaseStatus").GetString());
         Assert.Equal(
             "test-health-correlation",
             Assert.Single(response.Headers.GetValues(CorrelationHeaderName)));
+    }
+
+    [Fact]
+    public async Task Health_ReturnsServiceUnavailableWhenDatabaseIsUnhealthy()
+    {
+        DatabaseHealthService.IsHealthy = false;
+
+        using var response = await Client.GetAsync("/health");
+        using var document = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+
+        Assert.Equal(HttpStatusCode.ServiceUnavailable, response.StatusCode);
+        Assert.Equal("Unhealthy", document.RootElement.GetProperty("status").GetString());
+        Assert.Equal("Unhealthy", document.RootElement.GetProperty("databaseStatus").GetString());
     }
 
     [Fact]
@@ -184,5 +209,19 @@ public sealed class ApiApplicationTests : IAsyncLifetime
 
     private HttpClient Client => _client ?? throw new InvalidOperationException("The API test host is not initialized.");
 
+    private StubDatabaseHealthService DatabaseHealthService =>
+        _databaseHealthService ?? throw new InvalidOperationException("The database health stub is not initialized.");
+
     public sealed record ValidationProbeRequest([property: Required] string Name);
+
+    private sealed class StubDatabaseHealthService : IDatabaseHealthService
+    {
+        public bool IsHealthy { get; set; } = true;
+
+        public ValueTask<bool> CanConnectAsync(CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            return ValueTask.FromResult(IsHealthy);
+        }
+    }
 }

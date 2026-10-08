@@ -12,12 +12,20 @@ public static class HealthEndpoint
                 async (IHealthService healthService, CancellationToken cancellationToken) =>
                 {
                     var health = await healthService.CheckAsync(cancellationToken);
-                    return Results.Ok(new HealthResponse(health.Status, health.CheckedAtUtc));
+                    var response = new HealthResponse(
+                        health.Status,
+                        health.CheckedAtUtc,
+                        health.DatabaseStatus);
+
+                    return health.Status == "Healthy"
+                        ? Results.Ok(response)
+                        : Results.Json(response, statusCode: StatusCodes.Status503ServiceUnavailable);
                 })
             .WithName("Health")
             .WithTags("System")
             .AllowAnonymous()
             .Produces<HealthResponse>(StatusCodes.Status200OK)
+            .Produces<HealthResponse>(StatusCodes.Status503ServiceUnavailable)
             .Produces<ApiProblemResponse>(StatusCodes.Status400BadRequest, "application/problem+json")
             .Produces<ApiProblemResponse>(StatusCodes.Status401Unauthorized, "application/problem+json")
             .Produces<ApiProblemResponse>(StatusCodes.Status403Forbidden, "application/problem+json")
@@ -31,4 +39,7 @@ public static class HealthEndpoint
     }
 }
 
-public sealed record HealthResponse(string Status, DateTimeOffset CheckedAtUtc);
+public sealed record HealthResponse(
+    string Status,
+    DateTimeOffset CheckedAtUtc,
+    string DatabaseStatus);

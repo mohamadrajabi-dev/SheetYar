@@ -11,7 +11,7 @@ Flutter Mobile App (Android and iOS)
          |           |
       EF Core    XLSX Service
          |        ClosedXML
- SQL Server Express  |
+     SQL Server      |
                   .xlsx files
 ```
 
@@ -53,7 +53,7 @@ The mobile app owns presentation and interactive editing. The API owns authentic
 | WorkbookVersion | Immutable restorable snapshot | Belongs to a workbook |
 | Template | Reusable guided workbook definition | Creates a new workbook |
 
-Large binary XLSX payloads should not be stored in ordinary cell tables. Import and export should use bounded streams and temporary storage with cleanup rules.
+XLSX payloads must not be stored in SQL Server. `FileAsset` records contain metadata and a safe, application-controlled storage path only. Import and export use bounded streams and file storage outside the repository and web root, with ownership checks and cleanup rules.
 
 ## Boundaries
 
