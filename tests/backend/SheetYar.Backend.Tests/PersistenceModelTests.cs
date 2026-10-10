@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -26,6 +27,16 @@ public sealed class PersistenceModelTests
         typeof(AuditLog),
     ];
 
+    private static readonly Type[] IdentityEntityTypes =
+    [
+        typeof(IdentityRole<Guid>),
+        typeof(IdentityRoleClaim<Guid>),
+        typeof(IdentityUserClaim<Guid>),
+        typeof(IdentityUserLogin<Guid>),
+        typeof(IdentityUserRole<Guid>),
+        typeof(IdentityUserToken<Guid>),
+    ];
+
     [Fact]
     public void Model_MapsAllRequiredEntitiesWithCommonConcurrencyAndUtcProperties()
     {
@@ -36,7 +47,9 @@ public sealed class PersistenceModelTests
             .ToArray();
 
         Assert.Equal(
-            EntityTypes.OrderBy(type => type.FullName, StringComparer.Ordinal),
+            EntityTypes
+                .Concat(IdentityEntityTypes)
+                .OrderBy(type => type.FullName, StringComparer.Ordinal),
             mappedTypes);
 
         foreach (var clrType in EntityTypes)
@@ -84,6 +97,7 @@ public sealed class PersistenceModelTests
         AssertUniqueIndex<Template>(dbContext, nameof(Template.Code));
         AssertUniqueIndex<FileAsset>(dbContext, nameof(FileAsset.StoragePath));
         AssertUniqueIndex<RefreshToken>(dbContext, nameof(RefreshToken.TokenHash));
+        AssertUniqueIndex<RefreshToken>(dbContext, nameof(RefreshToken.ReplacedByTokenId));
         AssertUniqueIndex<WorkbookVersion>(
             dbContext,
             nameof(WorkbookVersion.WorkbookId),

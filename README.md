@@ -18,12 +18,13 @@ SheetYar is an English-only Flutter mobile application for Android and iOS. It h
 - Flutter 3.47.5 with Dart 3.13.4.
 - Android Studio and Android SDK Platform 36 for Android development.
 - .NET SDK 8.0.302.
-- SQL Server for future persistence work.
+- SQL Server for API persistence.
 - macOS and Xcode are required to build and sign the iOS application.
 
 ## Configuration
 
 Use `env.example` as the local environment-variable reference. Keep real credentials and connection strings outside source control.
+Authentication setup and endpoint behavior are documented in `docs/AUTHENTICATION.md`.
 
 ## Mobile Checks
 
@@ -48,4 +49,4 @@ Run the API with:
 dotnet run --project apps/api/src/SheetYar.Api
 ```
 
-The initial API exposes `GET /health`.
+The API exposes `GET /health`, the OpenAPI document at `/openapi/v1.json`, and the authentication endpoints documented in `docs/AUTHENTICATION.md`.

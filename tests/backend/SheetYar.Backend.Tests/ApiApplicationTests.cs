@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using SheetYar.Api;
@@ -29,6 +30,7 @@ public sealed class ApiApplicationTests : IAsyncLifetime
             [HttpStatusCode.Conflict] = "conflict",
             [HttpStatusCode.RequestEntityTooLarge] = "payload_too_large",
             [HttpStatusCode.UnprocessableEntity] = "validation_failed",
+            [HttpStatusCode.TooManyRequests] = "rate_limit_exceeded",
             [HttpStatusCode.InternalServerError] = "internal_server_error",
         };
 
@@ -44,6 +46,7 @@ public sealed class ApiApplicationTests : IAsyncLifetime
             "Testing",
             builder =>
             {
+                builder.Configuration.AddTestAuthentication();
                 builder.Services.RemoveAll<IDatabaseHealthService>();
                 builder.Services.AddSingleton<IDatabaseHealthService>(_databaseHealthService);
             });

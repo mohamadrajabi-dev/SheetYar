@@ -71,3 +71,17 @@ This file records accepted product and engineering decisions. Update it when a f
 - **Date:** 2026-10-08
 - **Decision:** Allow `Microsoft.Data.SqlClient.SNI.runtime` as the sole exception to the repository dependency-license policy because it is a required runtime dependency of the official EF Core SQL Server provider.
 - **Consequence:** The exception is limited to this exact package and purpose. All other dependencies remain subject to the existing MIT, BSD-2-Clause, BSD-3-Clause, or Apache-2.0 policy and must still be verified and registered before use.
+
+## D-011: Identity and Token Sessions
+
+- **Status:** Accepted
+- **Date:** 2026-10-09
+- **Decision:** Use ASP.NET Core Identity with short-lived signed JWT access tokens and rotating opaque refresh-token families. Store only refresh-token hashes in SQL Server and persist only the raw refresh token in mobile secure storage.
+- **Consequence:** Refresh-token reuse revokes the complete family and invalidates issued access tokens through the Identity security stamp. Signing keys remain outside source control, and deployed authentication traffic requires HTTPS.
+
+## D-012: Mobile Runtime Configuration and Network Security
+
+- **Status:** Accepted
+- **Date:** 2026-10-10
+- **Decision:** Supply `APP_ENVIRONMENT` and `API_BASE_URL` through `dart-define`. Development on the Android Emulator defaults to `http://10.0.2.2:5028`; plain HTTP is limited to debug, while production and non-debug builds require HTTPS.
+- **Consequence:** Android release traffic denies cleartext, iOS has no App Transport Security exception, access tokens remain memory-only, and refresh tokens remain in platform secure storage.

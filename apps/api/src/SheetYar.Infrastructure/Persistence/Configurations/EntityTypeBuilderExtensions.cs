@@ -10,7 +10,7 @@ internal static class EntityTypeBuilderExtensions
         this EntityTypeBuilder<TEntity> builder,
         string tableName,
         Action<TableBuilder<TEntity>>? configureTable = null)
-        where TEntity : BaseEntity
+        where TEntity : class, ITrackedEntity
     {
         builder.ToTable(
             tableName,

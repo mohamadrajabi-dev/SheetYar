@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SheetYar.Domain.Auditing;
 using SheetYar.Domain.Authentication;
@@ -11,7 +13,7 @@ namespace SheetYar.Infrastructure.Persistence;
 
 public sealed class SheetYarDbContext(
     DbContextOptions<SheetYarDbContext> options,
-    TimeProvider timeProvider) : DbContext(options)
+    TimeProvider timeProvider) : IdentityDbContext<AppUser, IdentityRole<Guid>, Guid>(options)
 {
     public DbSet<AppUser> AppUsers => Set<AppUser>();
 
@@ -43,15 +45,15 @@ public sealed class SheetYarDbContext(
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(SheetYarDbContext).Assembly);
         base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(SheetYarDbContext).Assembly);
     }
 
     private void PrepareTrackedEntities()
     {
         var now = timeProvider.GetUtcNow().ToUniversalTime();
 
-        foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+        foreach (var entry in ChangeTracker.Entries<ITrackedEntity>())
         {
             if (entry.State == EntityState.Added)
             {

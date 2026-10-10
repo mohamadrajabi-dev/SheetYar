@@ -43,7 +43,9 @@ internal sealed class RefreshTokenConfiguration : IEntityTypeConfiguration<Refre
         builder.HasIndex(token => token.TokenHash).IsUnique();
         builder.HasIndex(token => token.TokenFamilyId);
         builder.HasIndex(token => new { token.AppUserId, token.ExpiresAtUtc });
-        builder.HasIndex(token => token.ReplacedByTokenId);
+        builder.HasIndex(token => token.ReplacedByTokenId)
+            .IsUnique()
+            .HasFilter("[ReplacedByTokenId] IS NOT NULL");
 
         builder.HasOne(token => token.AppUser)
             .WithMany(user => user.RefreshTokens)

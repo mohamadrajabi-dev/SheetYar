@@ -52,6 +52,7 @@ public sealed class GlobalExceptionHandler(
         {
             RequestValidationException validationException =>
                 (StatusCodes.Status422UnprocessableEntity, validationException.Errors),
+            AuthenticationFailedException => (StatusCodes.Status401Unauthorized, null),
             ConflictException => (StatusCodes.Status409Conflict, null),
             KeyNotFoundException => (StatusCodes.Status404NotFound, null),
             UnauthorizedAccessException => (StatusCodes.Status403Forbidden, null),

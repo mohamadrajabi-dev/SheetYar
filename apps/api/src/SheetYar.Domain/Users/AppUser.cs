@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using SheetYar.Domain.Auditing;
 using SheetYar.Domain.Authentication;
 using SheetYar.Domain.Common;
@@ -6,13 +7,18 @@ using SheetYar.Domain.Workbooks;
 
 namespace SheetYar.Domain.Users;
 
-public sealed class AppUser : BaseEntity
+public sealed class AppUser : IdentityUser<Guid>, ITrackedEntity
 {
-    public string Email { get; set; } = string.Empty;
+    public AppUser()
+    {
+        Id = Guid.NewGuid();
+    }
 
-    public string NormalizedEmail { get; set; } = string.Empty;
+    public DateTimeOffset CreatedAtUtc { get; set; }
 
-    public string PasswordHash { get; set; } = string.Empty;
+    public DateTimeOffset UpdatedAtUtc { get; set; }
+
+    public byte[] RowVersion { get; set; } = [];
 
     public string DisplayName { get; set; } = string.Empty;
 

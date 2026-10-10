@@ -189,3 +189,76 @@ All direct and transitive third-party dependencies must be registered before use
 | xunit.core | NuGet | 2.5.3 | Apache-2.0 | https://www.nuget.org/packages/xunit.core/2.5.3/License | Transitive dependency resolved by the current backend or test projects | 2026-10-08 |
 | xunit.extensibility.core | NuGet | 2.5.3 | Apache-2.0 | https://www.nuget.org/packages/xunit.extensibility.core/2.5.3/License | Transitive dependency resolved by the current backend or test projects | 2026-10-08 |
 | xunit.extensibility.execution | NuGet | 2.5.3 | Apache-2.0 | https://www.nuget.org/packages/xunit.extensibility.execution/2.5.3/License | Transitive dependency resolved by the current backend or test projects | 2026-10-08 |
+| Microsoft.AspNetCore.Authentication.JwtBearer | NuGet | 8.0.31 | MIT | https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/8.0.31/License | JWT bearer authentication middleware | 2026-10-09 |
+| Microsoft.AspNetCore.Identity.EntityFrameworkCore | NuGet | 8.0.31 | MIT | https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.EntityFrameworkCore/8.0.31/License | ASP.NET Core Identity persistence with EF Core | 2026-10-09 |
+| Microsoft.AspNetCore.Cryptography.Internal | NuGet | 8.0.31 | MIT | https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.Internal/8.0.31/License | Transitive dependency of ASP.NET Core Identity | 2026-10-09 |
+| Microsoft.AspNetCore.Cryptography.KeyDerivation | NuGet | 8.0.31 | MIT | https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/8.0.31/License | Transitive dependency of ASP.NET Core Identity password hashing | 2026-10-09 |
+| Microsoft.EntityFrameworkCore.InMemory | NuGet | 8.0.31 | MIT | https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory/8.0.31/License | Isolated authentication service tests | 2026-10-09 |
+| Microsoft.Extensions.Identity.Core | NuGet | 8.0.31 | MIT | https://www.nuget.org/packages/Microsoft.Extensions.Identity.Core/8.0.31/License | Transitive ASP.NET Core Identity services | 2026-10-09 |
+| Microsoft.Extensions.Identity.Stores | NuGet | 8.0.31 | MIT | https://www.nuget.org/packages/Microsoft.Extensions.Identity.Stores/8.0.31/License | Identity user model and store abstractions | 2026-10-09 |
+| Microsoft.IdentityModel.Abstractions | NuGet | 7.7.3 | MIT | https://www.nuget.org/packages/Microsoft.IdentityModel.Abstractions/7.7.3/License | Transitive JWT abstraction support | 2026-10-09 |
+| Microsoft.IdentityModel.JsonWebTokens | NuGet | 7.7.3 | MIT | https://www.nuget.org/packages/Microsoft.IdentityModel.JsonWebTokens/7.7.3/License | Transitive JWT processing support | 2026-10-09 |
+| Microsoft.IdentityModel.Logging | NuGet | 7.7.3 | MIT | https://www.nuget.org/packages/Microsoft.IdentityModel.Logging/7.7.3/License | Transitive JWT diagnostics support | 2026-10-09 |
+| Microsoft.IdentityModel.Protocols | NuGet | 7.7.3 | MIT | https://www.nuget.org/packages/Microsoft.IdentityModel.Protocols/7.7.3/License | Transitive token protocol support | 2026-10-09 |
+| Microsoft.IdentityModel.Protocols.OpenIdConnect | NuGet | 7.7.3 | MIT | https://www.nuget.org/packages/Microsoft.IdentityModel.Protocols.OpenIdConnect/7.7.3/License | Transitive JWT bearer protocol support | 2026-10-09 |
+| Microsoft.IdentityModel.Tokens | NuGet | 7.7.3 | MIT | https://www.nuget.org/packages/Microsoft.IdentityModel.Tokens/7.7.3/License | JWT signing and validation primitives | 2026-10-09 |
+| System.IdentityModel.Tokens.Jwt | NuGet | 7.7.3 | MIT | https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt/7.7.3/License | JWT creation and serialization | 2026-10-09 |
+| flutter_secure_storage | pub.dev | 11.2.0 | BSD-3-Clause | https://pub.dev/packages/flutter_secure_storage/versions/11.2.0 | Encrypted mobile refresh-token storage | 2026-10-09 |
+| flutter_secure_storage_darwin | pub.dev | 0.4.3 | BSD-3-Clause | https://pub.dev/packages/flutter_secure_storage_darwin/versions/0.4.3 | Apple Keychain implementation for flutter_secure_storage | 2026-10-09 |
+| flutter_secure_storage_linux | pub.dev | 3.0.3 | BSD-3-Clause | https://pub.dev/packages/flutter_secure_storage_linux/versions/3.0.3 | Transitive Linux implementation of flutter_secure_storage | 2026-10-09 |
+| flutter_secure_storage_platform_interface | pub.dev | 2.1.1 | BSD-3-Clause | https://pub.dev/packages/flutter_secure_storage_platform_interface/versions/2.1.1 | Platform interface for flutter_secure_storage | 2026-10-09 |
+| flutter_secure_storage_web | pub.dev | 2.1.1 | BSD-3-Clause | https://pub.dev/packages/flutter_secure_storage_web/versions/2.1.1 | Transitive web implementation resolved by flutter_secure_storage | 2026-10-09 |
+| flutter_secure_storage_windows | pub.dev | 4.2.2 | BSD-3-Clause | https://pub.dev/packages/flutter_secure_storage_windows/versions/4.2.2 | Transitive Windows implementation resolved by flutter_secure_storage | 2026-10-09 |
+| ffi | pub.dev | 2.2.0 | BSD-3-Clause | https://pub.dev/packages/ffi/versions/2.2.0 | Transitive native interoperability support | 2026-10-09 |
+| ffi_leak_tracker | pub.dev | 0.1.2 | BSD-3-Clause | https://pub.dev/packages/ffi_leak_tracker/versions/0.1.2 | Transitive native resource tracking support | 2026-10-09 |
+| plugin_platform_interface | pub.dev | 2.1.8 | BSD-3-Clause | https://pub.dev/packages/plugin_platform_interface/versions/2.1.8 | Flutter plugin platform interface support | 2026-10-09 |
+| web | pub.dev | 1.1.1 | BSD-3-Clause | https://pub.dev/packages/web/versions/1.1.1 | Transitive browser API bindings | 2026-10-09 |
+| path_provider | pub.dev | 2.1.6 | BSD-3-Clause | https://pub.dev/packages/path_provider/versions/2.1.6 | Transitive filesystem path discovery | 2026-10-09 |
+| path_provider_android | pub.dev | 2.3.1 | BSD-3-Clause | https://pub.dev/packages/path_provider_android/versions/2.3.1 | Android implementation of path_provider | 2026-10-09 |
+| path_provider_foundation | pub.dev | 2.6.0 | BSD-3-Clause | https://pub.dev/packages/path_provider_foundation/versions/2.6.0 | Apple implementation of path_provider | 2026-10-09 |
+| path_provider_linux | pub.dev | 2.2.2 | BSD-3-Clause | https://pub.dev/packages/path_provider_linux/versions/2.2.2 | Transitive Linux implementation of path_provider | 2026-10-09 |
+| path_provider_platform_interface | pub.dev | 2.1.3 | BSD-3-Clause | https://pub.dev/packages/path_provider_platform_interface/versions/2.1.3 | Platform interface for path_provider | 2026-10-09 |
+| path_provider_windows | pub.dev | 2.3.0 | BSD-3-Clause | https://pub.dev/packages/path_provider_windows/versions/2.3.0 | Transitive Windows implementation of path_provider | 2026-10-09 |
+| win32 | pub.dev | 6.4.0 | BSD-3-Clause | https://pub.dev/packages/win32/versions/6.4.0 | Transitive Windows API bindings | 2026-10-09 |
+| jni | pub.dev | 1.1.0 | BSD-3-Clause | https://pub.dev/packages/jni/versions/1.1.0 | Transitive Android Java interoperability | 2026-10-09 |
+| jni_flutter | pub.dev | 1.0.4+1 | BSD-3-Clause | https://pub.dev/packages/jni_flutter/versions/1.0.4%2B1 | Transitive Flutter integration for JNI | 2026-10-09 |
+| jni_util | pub.dev | 1.0.0 | BSD-3-Clause | https://pub.dev/packages/jni_util/versions/1.0.0 | Transitive JNI utilities | 2026-10-09 |
+| args | pub.dev | 2.7.0 | BSD-3-Clause | https://pub.dev/packages/args/versions/2.7.0 | Transitive command-line argument support for build tooling | 2026-10-09 |
+| package_config | pub.dev | 3.0.0 | BSD-3-Clause | https://pub.dev/packages/package_config/versions/3.0.0 | Transitive Dart package configuration support | 2026-10-09 |
+| objective_c | pub.dev | 9.5.0 | BSD-3-Clause | https://pub.dev/packages/objective_c/versions/9.5.0 | Transitive Apple native interoperability | 2026-10-09 |
+| code_assets | pub.dev | 1.2.1 | BSD-3-Clause | https://pub.dev/packages/code_assets/versions/1.2.1 | Transitive native code asset build support | 2026-10-09 |
+| hooks | pub.dev | 2.0.2 | BSD-3-Clause | https://pub.dev/packages/hooks/versions/2.0.2 | Transitive Dart build hook support | 2026-10-09 |
+| logging | pub.dev | 1.3.0 | BSD-3-Clause | https://pub.dev/packages/logging/versions/1.3.0 | Transitive structured logging primitives | 2026-10-09 |
+| pub_semver | pub.dev | 2.2.1 | BSD-3-Clause | https://pub.dev/packages/pub_semver/versions/2.2.1 | Transitive semantic version parsing | 2026-10-09 |
+| platform | pub.dev | 3.2.0 | BSD-3-Clause | https://pub.dev/packages/platform/versions/3.2.0 | Transitive host platform detection | 2026-10-09 |
+| xdg_directories | pub.dev | 1.1.0 | BSD-3-Clause | https://pub.dev/packages/xdg_directories/versions/1.1.0 | Transitive Linux directory discovery | 2026-10-09 |
+| record_use | pub.dev | 0.6.0 | BSD-3-Clause | https://pub.dev/packages/record_use/versions/0.6.0 | Transitive build-time record usage support | 2026-10-09 |
+| crypto | pub.dev | 3.0.7 | BSD-3-Clause | https://pub.dev/packages/crypto/versions/3.0.7 | Transitive cryptographic primitives | 2026-10-09 |
+| yaml | pub.dev | 3.1.4 | MIT | https://pub.dev/packages/yaml/versions/3.1.4 | Transitive YAML parsing for build tooling | 2026-10-09 |
+| typed_data | pub.dev | 1.4.0 | BSD-3-Clause | https://pub.dev/packages/typed_data/versions/1.4.0 | Transitive typed byte buffer utilities | 2026-10-09 |
+| collection | pub.dev | 1.19.1 | BSD-3-Clause | https://pub.dev/packages/collection/versions/1.19.1 | Transitive collection utilities | 2026-10-09 |
+| meta | pub.dev | 1.18.3 | BSD-3-Clause | https://pub.dev/packages/meta/versions/1.18.3 | Transitive Dart annotations | 2026-10-09 |
+| path | pub.dev | 1.9.1 | BSD-3-Clause | https://pub.dev/packages/path/versions/1.9.1 | Transitive cross-platform path utilities | 2026-10-09 |
+| source_span | pub.dev | 1.10.2 | BSD-3-Clause | https://pub.dev/packages/source_span/versions/1.10.2 | Transitive source location utilities | 2026-10-09 |
+| string_scanner | pub.dev | 1.4.1 | BSD-3-Clause | https://pub.dev/packages/string_scanner/versions/1.4.1 | Transitive string scanning utilities | 2026-10-09 |
+| term_glyph | pub.dev | 1.2.2 | BSD-3-Clause | https://pub.dev/packages/term_glyph/versions/1.2.2 | Transitive terminal glyph support | 2026-10-09 |
+| Flutter SDK (`flutter_localizations`) | Flutter SDK | 3.47.5 | BSD-3-Clause | https://github.com/flutter/flutter/blob/3.47.5/LICENSE | SDK localization support required transitively by Flutter UI packages | 2026-10-10 |
+| flutter_riverpod | pub.dev | 3.4.3 | MIT | https://pub.dev/packages/flutter_riverpod/versions/3.4.3 | Flutter state management and dependency injection | 2026-10-10 |
+| riverpod | pub.dev | 3.4.3 | MIT | https://pub.dev/packages/riverpod/versions/3.4.3 | Core state management used by flutter_riverpod | 2026-10-10 |
+| state_notifier | pub.dev | 1.0.0 | MIT | https://pub.dev/packages/state_notifier/versions/1.0.0 | Transitive observable state support for Riverpod | 2026-10-10 |
+| listen | pub.dev | 1.0.1 | BSD-3-Clause | https://pub.dev/packages/listen/versions/1.0.1 | Transitive listener primitives for Riverpod | 2026-10-10 |
+| uuid | pub.dev | 4.6.0 | MIT | https://pub.dev/packages/uuid/versions/4.6.0 | Transitive identifier support for Riverpod | 2026-10-10 |
+| fixnum | pub.dev | 1.1.1 | BSD-3-Clause | https://pub.dev/packages/fixnum/versions/1.1.1 | Transitive fixed-width integer support for uuid | 2026-10-10 |
+| go_router | pub.dev | 18.0.2 | BSD-3-Clause | https://pub.dev/packages/go_router/versions/18.0.2 | Declarative mobile navigation | 2026-10-10 |
+| cupertino_ui | pub.dev | 1.1.2 | BSD-3-Clause | https://pub.dev/packages/cupertino_ui/versions/1.1.2 | Transitive Cupertino UI support for go_router and material_ui | 2026-10-10 |
+| material_ui | pub.dev | 1.6.0 | BSD-3-Clause | https://pub.dev/packages/material_ui/versions/1.6.0 | Transitive Material UI support for go_router | 2026-10-10 |
+| intl | pub.dev | 0.20.3 | BSD-3-Clause | https://pub.dev/packages/intl/versions/0.20.3 | Transitive internationalization support for Flutter UI packages | 2026-10-10 |
+| dio | pub.dev | 5.11.1 | MIT | https://pub.dev/packages/dio/versions/5.11.1 | REST API client with cancellation and interceptors | 2026-10-10 |
+| dio_web_adapter | pub.dev | 2.2.2 | MIT | https://pub.dev/packages/dio_web_adapter/versions/2.2.2 | Transitive Dio platform adapter resolved by the package | 2026-10-10 |
+| http_parser | pub.dev | 4.1.2 | BSD-3-Clause | https://pub.dev/packages/http_parser/versions/4.1.2 | Transitive HTTP media type parsing for Dio | 2026-10-10 |
+| mime | pub.dev | 2.1.0 | BSD-3-Clause | https://pub.dev/packages/mime/versions/2.1.0 | Transitive MIME type support for Dio | 2026-10-10 |
+| async | pub.dev | 2.13.1 | BSD-3-Clause | https://pub.dev/packages/async/versions/2.13.1 | Transitive asynchronous utilities for Riverpod and Dio | 2026-10-10 |
+| clock | pub.dev | 1.1.3 | Apache-2.0 | https://pub.dev/packages/clock/versions/1.1.3 | Transitive clock abstraction for Riverpod | 2026-10-10 |
+| test_api | pub.dev | 0.7.12 | BSD-3-Clause | https://pub.dev/packages/test_api/versions/0.7.12 | Transitive testing primitives required by Riverpod | 2026-10-10 |
+| material_color_utilities | pub.dev | 0.13.0 | Apache-2.0 | https://pub.dev/packages/material_color_utilities/versions/0.13.0 | Transitive Material color support | 2026-10-10 |
+| vector_math | pub.dev | 2.4.0 | BSD-3-Clause | https://pub.dev/packages/vector_math/versions/2.4.0 | Transitive vector utilities for Material UI | 2026-10-10 |

@@ -1,6 +1,7 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.OpenApi.Models;
+using SheetYar.Api.Authentication;
 using SheetYar.Api.Errors;
 using SheetYar.Api.Health;
 using SheetYar.Api.Middleware;
@@ -36,6 +37,7 @@ public static class ApiApplication
         var app = builder.Build();
         ConfigurePipeline(app);
         app.MapHealthEndpoint();
+        app.MapAuthenticationEndpoints();
 
         return app;
     }
@@ -64,7 +66,7 @@ public static class ApiApplication
                 ApiProblemDetailsFactory.Enrich(context.HttpContext, context.ProblemDetails);
         });
         services.AddExceptionHandler<GlobalExceptionHandler>();
-        services.AddAuthorization();
+        services.AddSheetYarAuthentication(configuration);
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(options =>
         {
@@ -73,6 +75,13 @@ public static class ApiApplication
                 Title = "SheetYar API",
                 Version = "v1",
                 Description = "The REST API for the SheetYar mobile application.",
+            });
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer",
+                BearerFormat = "JWT",
+                Description = "Enter a SheetYar access token.",
             });
         });
 
@@ -106,6 +115,9 @@ public static class ApiApplication
         });
         app.UseRequestLocalization();
         app.UseMiddleware<RequestSizeLimitMiddleware>();
+        app.UseRouting();
+        app.UseRateLimiter();
+        app.UseAuthentication();
         app.UseAuthorization();
         app.UseSwagger(options => options.RouteTemplate = "openapi/{documentName}.json");
     }

@@ -1,6 +1,6 @@
 namespace SheetYar.Domain.Common;
 
-public abstract class BaseEntity
+public abstract class BaseEntity : ITrackedEntity
 {
     public Guid Id { get; set; } = Guid.NewGuid();
 
